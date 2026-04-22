@@ -343,8 +343,7 @@ app.get("/cultivars", (req, res) => {
       body: "Medium-full",
       acidity: "Medium-high",
       description: "Coffea liberica var. dewevrei  -  often mislabeled as Barako but a distinct variety with a completely different flavor profile. Tart and fruity where true Barako is bold and smoky. Deserves to be understood on its own terms."
-    }
-
+    },
     {
       name: "Red Bourbon",
       species: "arabica",
@@ -913,4 +912,3 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, () => console.log("Bored Barista API running on http://localhost:3000"));
-</script>
