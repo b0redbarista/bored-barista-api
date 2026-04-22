@@ -1,10 +1,5 @@
 const express = require("express");
 const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 app.use(express.json());
 
 // ─────────────────────────────────────────
@@ -143,7 +138,7 @@ app.get("/brewing-guides", (req, res) => {
         "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
       ],
       flavor_profile: "Exceptionally clean and bright. Thick Chemex filters remove more oils and fines than V60 or Kalita, producing the clearest cup of the three.",
-      tips: "At Intelligentsia, Chemex was used exclusively for decaf. The thick bonded filter creates significantly more flow resistance than V60 or Kalita filters — grind much coarser than you think you need. Because of this resistance, brew times are less predictable and consistent than V60 or Kalita. Same dose, ratio, and pour protocol applies but expect more variability. The payoff is an exceptionally clean, bright cup that showcases the best of well-processed decaf."
+      tips: "At many specialty coffee shop, Chemex is used for larger batch sizes and for decaf. The thick bonded filter creates significantly more flow resistance than V60 or Kalita filters — grind much coarser than you think you need. Because of this resistance, brew times are less predictable and consistent than V60 or Kalita. Same dose, ratio, and pour protocol applies but expect more variability. The payoff is an exceptionally clean, bright cup that showcases the best of well-processed decaf."
     },
     {
       method: "French Press",
