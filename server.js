@@ -1,10 +1,5 @@
 const express = require("express");
 const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 app.use(express.json());
 
 // ─────────────────────────────────────────
@@ -100,29 +95,50 @@ app.get("/brewing-guides", (req, res) => {
     {
       method: "V60 Pour Over",
       roast: "Light",
-      grind: "Medium-fine",
-      temp: "94–96°C",
-      ratio: "1:16",
-      time: "2:30–3:30 min",
-      tips: "Bloom 30g water for 45 sec first. Pour in slow, steady spirals. Best for highlighting floral and fruit notes in light roasts."
+      grind: "Medium-fine (adjust for origin — faster for high-solubility Ethiopians like Guji)",
+      temp: "211°F / 99.4°C",
+      ratio: "1:18 (23g coffee / 415g water)",
+      time: "Pour windows — no strict total time",
+      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      pour_protocol: [
+        "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
+        "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
+        "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
+      ],
+      flavor_profile: "Highlights acidity and clarity. Best for showcasing bright, floral, and complex origins. Preferred for washed Ethiopians and high-acidity lots.",
+      tips: "V60 is chosen when you want to highlight acidity and delicate aromatics. More soluble coffees like Guji Ethiopians will brew faster — adjust grind coarser to compensate. Baristas tend to favor Kalita for its forgiveness, but V60 rewards precision."
     },
     {
       method: "Kalita Wave",
       roast: "Light / Medium",
-      grind: "Medium",
-      temp: "92–94°C",
-      ratio: "1:15",
-      time: "3:00–3:30 min",
-      tips: "Flat bed brewer — very forgiving and consistent. Great for beginners to pour over. Three holes reduce channeling."
+      grind: "Medium (adjust for origin — faster for high-solubility Ethiopians like Guji)",
+      temp: "211°F / 99.4°C",
+      ratio: "1:18 (23g coffee / 415g water)",
+      time: "Pour windows — no strict total time",
+      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      pour_protocol: [
+        "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
+        "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
+        "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
+      ],
+      flavor_profile: "Highlights sweetness and body. Flat bed produces even extraction — particularly effective for naturals and honey process coffees.",
+      tips: "Kalita is the workhorse of specialty pour over. The flat bed and three-hole design forgive minor pour inconsistencies better than the V60. Especially effective for naturals — the even extraction draws out sweetness beautifully. Most baristas prefer this over the V60 for its consistency."
     },
     {
       method: "Chemex",
-      roast: "Light / Medium",
-      grind: "Medium-coarse",
-      temp: "94°C",
-      ratio: "1:16",
-      time: "4:00–5:00 min",
-      tips: "Thick filters produce an exceptionally clean, bright cup. Bloom for 45 sec. Best for showcasing delicate floral and tea-like coffees."
+      roast: "Light / Medium — used exclusively for decaf",
+      grind: "Coarse — significantly coarser than V60 or Kalita to compensate for filter resistance",
+      temp: "211°F / 99.4°C",
+      ratio: "1:18 (23g coffee / 415g water)",
+      time: "Pour windows same as V60/Kalita but brew times are less consistent due to filter thickness",
+      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      pour_protocol: [
+        "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
+        "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
+        "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
+      ],
+      flavor_profile: "Exceptionally clean and bright. Thick Chemex filters remove more oils and fines than V60 or Kalita, producing the clearest cup of the three.",
+      tips: "At Intelligentsia, Chemex was used exclusively for decaf. The thick bonded filter creates significantly more flow resistance than V60 or Kalita filters — grind much coarser than you think you need. Because of this resistance, brew times are less predictable and consistent than V60 or Kalita. Same dose, ratio, and pour protocol applies but expect more variability. The payoff is an exceptionally clean, bright cup that showcases the best of well-processed decaf."
     },
     {
       method: "French Press",
@@ -154,11 +170,63 @@ app.get("/brewing-guides", (req, res) => {
     {
       method: "Espresso",
       roast: "Medium / Dark",
-      grind: "Very fine",
-      temp: "90–92°C",
-      ratio: "1:2 (18g in, 36g out)",
-      time: "25–30 sec",
-      tips: "Dial in by adjusting grind size first. Sour = grind finer. Bitter = grind coarser. Consistent tamping pressure matters."
+      grind: "Very fine — adjusted per style and coffee",
+      temp: "198–200°F / 92.2–93.3°C",
+      ratio: "Normale: 1:2.5 (18g in, 45g out)",
+      time: "25–30 sec for normale. Varies by style.",
+      certification: "Baristas must be certified before dialing espresso. Espresso is the highest form of coffee brewing — everything is intense yet nuanced. Bad extractions are obvious. Great to excellent shots are the required norm. The occasional god shot is always welcome.",
+      styles: [
+        {
+          name: "Ristretto",
+          ratio: "1:1 to 1:1.5 (18g in, 18–27g out)",
+          time: "18–22 sec",
+          character: "Intense, syrupy, concentrated sweetness. Only the earliest and most soluble compounds extracted. No room for error."
+        },
+        {
+          name: "Normale",
+          ratio: "1:2.5 (18g in, 45g out)",
+          time: "25–30 sec",
+          character: "The Intelligentsia standard. High extraction pushing toward lungo territory. Balanced intensity with complexity. Sweet, full, and lingering."
+        },
+        {
+          name: "Lungo",
+          ratio: "1:3 to 1:3.5 (18g in, 54–63g out)",
+          time: "35–45 sec",
+          character: "Extended extraction. More bitter compounds present but balanced by high sweetness when dialed correctly. Not for every coffee."
+        },
+        {
+          name: "Turbo Shot",
+          ratio: "1:2.5 (same as normale)",
+          time: "22–24 sec",
+          grind: "Coarser than normale — faster flow rate",
+          character: "Same dose, coarser grind, faster shot time. Reduces bitterness and increases clarity. Some coffees taste significantly better as turbo shots — particularly naturals and high-clarity lots."
+        }
+      ],
+      tips: "Espresso is the highest form of coffee brewing — every variable is amplified. Dial in grind first, one click at a time. Always pull on a scale. Sour or fast = grind finer. Bitter or slow = grind coarser. Not every coffee suits every style — part of the craft is knowing which style serves the coffee best.",
+      evaluation: {
+        philosophy: "Espresso evaluation is based entirely on quality in the cup. Shot time and yield are starting points — the cup tells you the truth. A balanced shot has sweetness that carries through to a long, lingering finish. That finish is your most important diagnostic tool.",
+        primary_indicators: [
+          { indicator: "Balanced", description: "Sweetness present from first sip through to a long lingering finish. Complexity without harshness. This is the target — great to excellent is the required norm." },
+          { indicator: "Sour finish", description: "Under-extracted. The shot may taste okay upfront but the finish turns sour or sharp rather than sweet. Grind finer, slow the shot down, or check your dose." },
+          { indicator: "Bitter or dry finish", description: "Over-extracted. Harsh compounds dominating the back palate. Grind coarser, speed the shot up, or reduce yield." },
+          { indicator: "Flat or hollow", description: "Low extraction overall. No sweetness, no complexity, no finish. Often a channeling issue or uneven distribution. Check your tamp and distribution before adjusting grind." },
+          { indicator: "Sharp or astringent", description: "Over-extracted or water too hot. The dryness coats the mouth. Drop temperature slightly or grind coarser." }
+        ],
+        refractometer_protocol: {
+          tool: "VST refractometer",
+          when_to_use: "When a barista is having difficulty dialing in and sensory evaluation alone is not resolving the issue. Even the most experienced baristas hit walls — the refractometer removes guesswork and shows exactly what is happening in the cup.",
+          target_extraction: "18–22% extraction yield. Target 20.5–21% for the Intelligentsia normale standard.",
+          target_tds: "8–12% TDS for espresso depending on style. Ristretto will be higher, lungo lower.",
+          process: [
+            "Pull the shot and let it cool slightly — hot samples give inaccurate readings",
+            "Place a drop on the refractometer prism",
+            "Read the Brix value and use the VST coffee app to calculate extraction yield",
+            "Compare against your target range",
+            "Adjust grind, dose, or yield based on the data combined with your sensory evaluation"
+          ],
+          important_note: "The refractometer confirms what your palate is telling you — it does not replace sensory evaluation. Always taste first, measure second. If the cup tastes balanced and the numbers are slightly off, trust the cup."
+        }
+      }
     },
     {
       method: "Cold Brew",
