@@ -313,6 +313,186 @@ app.get("/cultivars", (req, res) => {
       description: "Very common in Brazil and Central America. Natural processing brings out its chocolate and dried fruit character beautifully."
     },
     {
+  name: "Red Bourbon",
+  species: "arabica",
+  origin: "Réunion Island (natural mutation of Typica)",
+  process: ["washed", "natural", "honey"],
+  flavor: ["Chocolate", "Caramel", "Nutty", "Brown sugar"],
+  body: "Medium-full",
+  acidity: "Medium",
+  description: "A natural mutation of Typica and one of the oldest Arabica cultivars still widely grown. The foundation of the Bourbon family. Produces a classic, comforting cup — chocolate, caramel, and nutty sweetness with a clean finish. The benchmark against which other Bourbon mutations are measured."
+},
+{
+  name: "Yellow Bourbon",
+  species: "arabica",
+  origin: "Brazil (natural mutation of Red Bourbon)",
+  process: ["washed", "natural", "honey"],
+  flavor: ["Intense sweetness", "Bright citrus", "Stone fruit", "Tropical"],
+  body: "Medium",
+  acidity: "Medium-high",
+  description: "A natural mutation of Red Bourbon caused by a recessive gene that changes the cherry color from red to yellow at maturity. Matures faster than Red Bourbon but is more susceptible to disease. Higher fructose content produces an intensely sweet cup with bright citrus and stone fruit notes that distinguish it clearly from its Red Bourbon parent."
+},
+{
+  name: "Pink Bourbon",
+  species: "arabica",
+  origin: "Ethiopia (landrace — despite the name, not a Bourbon mutation)",
+  process: ["washed", "natural", "honey"],
+  flavor: ["Honeysuckle", "Pink lemonade", "Jasmine", "Floral"],
+  body: "Light-medium",
+  acidity: "High",
+  description: "Despite its name, Pink Bourbon is not a mutation of Red or Yellow Bourbon — it is an Ethiopian landrace variety. The pink cherry color led to the Bourbon association but genetically it is distinct. Rare and highly prized in specialty coffee for its intensely floral, perfumed character. Notes of honeysuckle, jasmine, and pink lemonade make it one of the most distinctive and sought-after coffees in the world."
+},
+{
+  name: "Pacamara",
+  species: "arabica",
+  origin: "El Salvador (Pacas × Maragogipe)",
+  process: ["washed", "natural", "honey"],
+  flavor: ["Stone fruit", "Floral", "Tropical", "Complex"],
+  body: "Full",
+  acidity: "High",
+  description: "A large-bean hybrid of Pacas and Maragogipe developed in El Salvador. Known for its impressive cup complexity — intensely floral and fruity with a heavy body. A consistent favorite in barista competitions worldwide."
+},
+{
+  name: "Pacas",
+  species: "arabica",
+  origin: "El Salvador (natural mutation of Bourbon)",
+  process: ["washed", "natural"],
+  flavor: ["Caramel", "Citrus", "Milk chocolate", "Clean"],
+  body: "Medium",
+  acidity: "Medium-high",
+  description: "A natural mutation of Bourbon discovered in El Salvador in 1949 on the Pacas family farm. Compact plant, high productivity, and a clean sweet cup. One of the parents of the celebrated Pacamara hybrid."
+},
+{
+  name: "Tabi",
+  species: "arabica",
+  origin: "Colombia (Typica × Bourbon × Timor Hybrid)",
+  process: ["washed", "natural"],
+  flavor: ["Floral", "Fruity", "Sweet", "Balanced"],
+  body: "Medium",
+  acidity: "Medium-high",
+  description: "Developed by Cenicafe in Colombia. Tabi means 'good' in the Guambiano indigenous language. Combines the exceptional cup quality of Typica and Bourbon with disease resistance. Produces an elegant, sweet, and complex cup increasingly found in Colombian specialty lots."
+},
+{
+  name: "Starmaya",
+  species: "arabica",
+  origin: "Mesoamerica (F1 hybrid — Ethiopia landrace × Timor Hybrid)",
+  process: ["washed", "natural"],
+  flavor: ["Floral", "Fruit-forward", "Bright", "Complex"],
+  body: "Medium",
+  acidity: "High",
+  description: "One of the first F1 hybrid varieties produced using hybrid seed technology, making it reproducible from seed unlike most F1 hybrids. Exceptional cup quality combined with disease resistance and climate adaptability. Represents the next generation of specialty coffee breeding — high performance without sacrificing flavor."
+},
+{
+  name: "Centroamericano",
+  species: "arabica",
+  origin: "Mesoamerica (F1 hybrid — Ethiopia landrace × Timor Hybrid)",
+  process: ["washed", "natural"],
+  flavor: ["Tropical fruit", "Floral", "Citrus", "Complex"],
+  body: "Medium-full",
+  acidity: "High",
+  description: "An F1 hybrid developed by CATIE and Ecom. One of the most celebrated F1 hybrids in specialty coffee — combining extraordinary cup quality with high yield and disease resistance. Frequently appears in Cup of Excellence competition lots from Central America."
+},
+{
+  name: "Mundo Novo",
+  species: "arabica",
+  origin: "Brazil (Typica × Bourbon natural hybrid)",
+  process: ["natural", "washed"],
+  flavor: ["Chocolate", "Nutty", "Caramel", "Full body"],
+  body: "Full",
+  acidity: "Low-medium",
+  description: "A natural hybrid of Typica and Bourbon discovered in Brazil in the 1940s. Highly productive, disease resistant, and well adapted to Brazilian growing conditions. Produces a classic full-bodied Brazilian cup — chocolate, nuts, and caramel. One of the most widely planted varieties in Brazil and a parent of several important cultivars."
+},
+{
+  name: "Mundo Maya",
+  species: "arabica",
+  origin: "Guatemala (Mundo Novo × Caturra)",
+  process: ["washed", "natural"],
+  flavor: ["Chocolate", "Caramel", "Citrus", "Balanced"],
+  body: "Medium-full",
+  acidity: "Medium",
+  description: "Developed in Guatemala as an adaptation of the Catuai lineage for Central American conditions. Combines the productivity and body of Mundo Novo with the compact size of Caturra. Produces a well-balanced, chocolatey cup suited to Guatemala's diverse growing regions."
+},
+{
+  name: "Milenio",
+  species: "arabica",
+  origin: "Colombia (Cenicafe hybrid)",
+  process: ["washed"],
+  flavor: ["Clean", "Sweet", "Balanced", "Mild citrus"],
+  body: "Medium",
+  acidity: "Medium",
+  description: "A Cenicafe variety developed for resistance to Colombia Rust (la roya) and CBD disease. Part of Colombia's ongoing effort to maintain specialty cup quality while protecting farmers from devastating crop losses. Produces a clean, balanced cup well suited to Colombia's washed processing tradition."
+},
+{
+  name: "Ruiru 11",
+  species: "arabica",
+  origin: "Kenya (complex multi-parent hybrid)",
+  process: ["washed"],
+  flavor: ["Blackcurrant", "Berry", "Bright acidity", "Bold"],
+  body: "Medium-full",
+  acidity: "High",
+  description: "Developed by the Coffee Research Station in Ruiru, Kenya specifically for resistance to Coffee Berry Disease (CBD) and leaf rust. A complex hybrid incorporating SL28, SL34, N39, K7, and Timor Hybrid genetics. Controversial in specialty circles because it produces smaller trees and slightly different cup characteristics than SL28/34 — but when grown well it retains Kenya's signature bright, berry-forward cup profile."
+},
+{
+  name: "Wolisho",
+  species: "arabica",
+  origin: "Ethiopia (JARC landrace — Jimma zone)",
+  process: ["washed", "natural"],
+  flavor: ["Floral", "Jasmine", "Citrus", "Tea-like"],
+  body: "Light-medium",
+  acidity: "High",
+  description: "One of the Ethiopian landrace varieties released by the Jimma Agricultural Research Centre (JARC). Tall plant with large leaves. Produces a delicate, floral, tea-like cup with jasmine and citrus character. Found predominantly in the Jimma zone of Ethiopia."
+},
+{
+  name: "Kurume",
+  species: "arabica",
+  origin: "Ethiopia (JARC landrace)",
+  process: ["washed", "natural"],
+  flavor: ["Berry", "Floral", "Sweet", "Bright"],
+  body: "Light",
+  acidity: "High",
+  description: "A dwarf JARC variety known for its small bean size and intensely bright, berry-forward cup. Highly productive and disease resistant. Increasingly appearing in specialty Ethiopian lots as roasters seek more traceable single-variety offerings."
+},
+{
+  name: "Dega",
+  species: "arabica",
+  origin: "Ethiopia (JARC highland landrace)",
+  process: ["washed", "natural"],
+  flavor: ["Stone fruit", "Floral", "Sweet", "Complex"],
+  body: "Medium",
+  acidity: "Medium-high",
+  description: "A JARC selection adapted to high altitude growing conditions — Dega means 'highland' in Amharic. Produces a well-balanced, sweet, and complex cup with excellent clarity. Well suited to washed processing and increasingly sought after by specialty roasters sourcing traceable Ethiopian lots."
+},
+{
+  name: "Wush Wush",
+  species: "arabica",
+  origin: "Ethiopia (Kaffa region landrace)",
+  process: ["washed", "natural"],
+  flavor: ["Bergamot", "Earl Grey", "Floral", "Tropical fruit"],
+  body: "Light",
+  acidity: "High",
+  description: "Named after the Wush Wush area in the Kaffa region of Ethiopia. One of the most distinctive Ethiopian landraces — famous for its bergamot and Earl Grey tea character that makes it unlike almost any other coffee in the world. Extremely rare and highly sought after by specialty roasters. When you taste it, you understand why Ethiopia is considered the birthplace of coffee."
+},
+{
+  name: "74110 / 74112 (JARC selections)",
+  species: "arabica",
+  origin: "Ethiopia (Jimma Agricultural Research Centre)",
+  process: ["washed", "natural"],
+  flavor: ["Floral", "Fruity", "Bright", "Classic Ethiopian"],
+  body: "Light-medium",
+  acidity: "High",
+  description: "Among the most widely planted JARC selections in Ethiopia, released in the 1970s as disease-resistant high-yield varieties. When grown at high altitude and processed with care they produce exceptional specialty cups with classic Ethiopian floral and fruit character. The backbone of much of Ethiopia's specialty coffee export."
+},
+{
+  name: "Coffea Eugenioides",
+  species: "eugenioides",
+  origin: "East Africa (Kenya, Uganda, Rwanda highlands)",
+  process: ["washed", "natural"],
+  flavor: ["Toasted marshmallow", "Cereal milk", "Lemon drops", "Papaya", "Sesame snaps"],
+  body: "Extremely light and silky",
+  acidity: "Low — candy-like sweetness dominates",
+  description: "Widely considered the most unique species in specialty coffee today. Often called 'Arabica's mother' — Eugenioides is one of the two parent species (alongside Robusta) that naturally hybridized roughly 600,000 years ago to create the Arabica we drink today. Indigenous to the highlands of East Africa, it was virtually abandoned as a commercial crop until recently rediscovered by the specialty world. The flavor profile is unlike any other coffee — many experts say it tastes more like a dessert than traditional coffee. Toasted marshmallows, cereal milk, sesame snaps, lemon drops, and papaya with an extremely silky, tea-like texture and high candy-like sweetness. A truly once-in-a-lifetime cup experience."
+}
+    {
       name: "Fine Robusta",
       species: "robusta",
       origin: "Philippines (Bukidnon, Cavite)",
