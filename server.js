@@ -1,15 +1,17 @@
 const express = require("express");
 const app = express();
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
+
 app.use(express.json());
 
-// ─────────────────────────────────────────
+//
 // FLAVOR TROUBLESHOOTER
-// ─────────────────────────────────────────
+//
 app.get("/flavor", (req, res) => {
   const { taste } = req.query;
 
@@ -20,25 +22,25 @@ app.get("/flavor", (req, res) => {
       fixes: [
         "Grind finer",
         "Increase brew time",
-        "Increase water temperature (try 94–96°C)",
+        "Increase water temperature (try 94-96 degrees C)",
         "Use a slower, more even pour"
       ]
     },
     bitter: {
       issue: "Over-extracted",
-      explanation: "Too much was pulled from the grounds — the harsh, dry compounds that come out last are dominating your cup.",
+      explanation: "Too much was pulled from the grounds  -  the harsh, dry compounds that come out last are dominating your cup.",
       fixes: [
         "Grind coarser",
         "Reduce brew time",
-        "Lower water temperature (try 88–92°C)",
+        "Lower water temperature (try 88-92 degrees C)",
         "Use less coffee or more water"
       ]
     },
     weak: {
       issue: "Low strength / under-dosed",
-      explanation: "Your brew ratio is off — too much water for the amount of coffee used.",
+      explanation: "Your brew ratio is off  -  too much water for the amount of coffee used.",
       fixes: [
-        "Use more coffee (try 1:15 ratio — 1g coffee per 15g water)",
+        "Use more coffee (try 1:15 ratio  -  1g coffee per 15g water)",
         "Grind slightly finer",
         "Reduce total water volume"
       ]
@@ -47,7 +49,7 @@ app.get("/flavor", (req, res) => {
       issue: "Stale coffee or poor development",
       explanation: "Your beans may be too old, or the roast was underdeveloped. Fresh coffee should have aroma and complexity.",
       fixes: [
-        "Use fresher beans — ideally roasted within the last 2–4 weeks",
+        "Use fresher beans  -  ideally roasted within the last 2-4 weeks",
         "Store beans in an airtight container away from light",
         "Try a slightly higher brew temperature",
         "Check if your grinder is producing a consistent grind"
@@ -68,7 +70,7 @@ app.get("/flavor", (req, res) => {
       explanation: "High sodium or chloride levels in your water can produce a salty taste.",
       fixes: [
         "Switch to filtered or bottled water",
-        "Avoid softened water — it's high in sodium",
+        "Avoid softened water  -  it's high in sodium",
         "Try a water recipe (Third Wave Water is a popular option)"
       ]
     }
@@ -92,64 +94,64 @@ app.get("/flavor", (req, res) => {
   res.json(result);
 });
 
-// ─────────────────────────────────────────
+//
 // BREWING GUIDES
-// ─────────────────────────────────────────
+//
 app.get("/brewing-guides", (req, res) => {
   res.json([
     {
       method: "V60 Pour Over",
       roast: "Light",
-      grind: "Medium-fine (adjust for origin — faster for high-solubility Ethiopians like Guji)",
-      temp: "211°F / 99.4°C",
+      grind: "Medium-fine (adjust for origin  -  faster for high-solubility Ethiopians like Guji)",
+      temp: "211 degrees F / 99.4 degrees C",
       ratio: "1:18 (23g coffee / 415g water)",
-      time: "Pour windows — no strict total time",
-      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      time: "Pour windows  -  no strict total time",
+      extraction_target: "18-22% extraction yield. Target 20.5-21% measured with VST refractometer.",
       pour_protocol: [
         "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
         "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
         "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
       ],
       flavor_profile: "Highlights acidity and clarity. Best for showcasing bright, floral, and complex origins. Preferred for washed Ethiopians and high-acidity lots.",
-      tips: "V60 is chosen when you want to highlight acidity and delicate aromatics. More soluble coffees like Guji Ethiopians will brew faster — adjust grind coarser to compensate. Baristas tend to favor Kalita for its forgiveness, but V60 rewards precision."
+      tips: "V60 is chosen when you want to highlight acidity and delicate aromatics. More soluble coffees like Guji Ethiopians will brew faster  -  adjust grind coarser to compensate. Baristas tend to favor Kalita for its forgiveness, but V60 rewards precision."
     },
     {
       method: "Kalita Wave",
       roast: "Light / Medium",
-      grind: "Medium (adjust for origin — faster for high-solubility Ethiopians like Guji)",
-      temp: "211°F / 99.4°C",
+      grind: "Medium (adjust for origin  -  faster for high-solubility Ethiopians like Guji)",
+      temp: "211 degrees F / 99.4 degrees C",
       ratio: "1:18 (23g coffee / 415g water)",
-      time: "Pour windows — no strict total time",
-      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      time: "Pour windows  -  no strict total time",
+      extraction_target: "18-22% extraction yield. Target 20.5-21% measured with VST refractometer.",
       pour_protocol: [
         "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
         "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
         "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
       ],
-      flavor_profile: "Highlights sweetness and body. Flat bed produces even extraction — particularly effective for naturals and honey process coffees.",
-      tips: "Kalita is the workhorse of specialty pour over. The flat bed and three-hole design forgive minor pour inconsistencies better than the V60. Especially effective for naturals — the even extraction draws out sweetness beautifully. Most baristas prefer this over the V60 for its consistency."
+      flavor_profile: "Highlights sweetness and body. Flat bed produces even extraction  -  particularly effective for naturals and honey process coffees.",
+      tips: "Kalita is the workhorse of specialty pour over. The flat bed and three-hole design forgive minor pour inconsistencies better than the V60. Especially effective for naturals  -  the even extraction draws out sweetness beautifully. Most baristas prefer this over the V60 for its consistency."
     },
     {
       method: "Chemex",
-      roast: "Light / Medium — used exclusively for decaf",
-      grind: "Coarse — significantly coarser than V60 or Kalita to compensate for filter resistance",
-      temp: "211°F / 99.4°C",
+      roast: "Light / Medium  -  used exclusively for decaf",
+      grind: "Coarse  -  significantly coarser than V60 or Kalita to compensate for filter resistance",
+      temp: "211 degrees F / 99.4 degrees C",
       ratio: "1:18 (23g coffee / 415g water)",
       time: "Pour windows same as V60/Kalita but brew times are less consistent due to filter thickness",
-      extraction_target: "18–22% extraction yield. Target 20.5–21% measured with VST refractometer.",
+      extraction_target: "18-22% extraction yield. Target 20.5-21% measured with VST refractometer.",
       pour_protocol: [
         "Bloom: Pour 65g within 10 seconds. Wait until 1:00.",
         "2nd pour: At 1:00, pour to 275g total. Done by 1:15.",
         "3rd pour: At 1:30, pour to 415g total. Done by 1:45 (no more than 15 seconds)."
       ],
       flavor_profile: "Exceptionally clean and bright. Thick Chemex filters remove more oils and fines than V60 or Kalita, producing the clearest cup of the three.",
-      tips: "At many specialty coffee shop, Chemex is used for larger batch sizes and for decaf. The thick bonded filter creates significantly more flow resistance than V60 or Kalita filters — grind much coarser than you think you need. Because of this resistance, brew times are less predictable and consistent than V60 or Kalita. Same dose, ratio, and pour protocol applies but expect more variability. The payoff is an exceptionally clean, bright cup that showcases the best of well-processed decaf."
+      tips: "At Intelligentsia, Chemex was used exclusively for decaf. The thick bonded filter creates significantly more flow resistance than V60 or Kalita filters  -  grind much coarser than you think you need. Because of this resistance, brew times are less predictable and consistent than V60 or Kalita. Same dose, ratio, and pour protocol applies but expect more variability. The payoff is an exceptionally clean, bright cup that showcases the best of well-processed decaf."
     },
     {
       method: "French Press",
       roast: "Medium / Dark",
       grind: "Coarse",
-      temp: "92–94°C",
+      temp: "92-94 degrees C",
       ratio: "1:15",
       time: "4:00 min steep",
       tips: "Do not stir after plunging. For cleaner results, let grounds settle 1 min before pouring. Full immersion = full body."
@@ -158,10 +160,10 @@ app.get("/brewing-guides", (req, res) => {
       method: "AeroPress",
       roast: "Any",
       grind: "Medium-fine (adjust to taste)",
-      temp: "80–96°C",
+      temp: "80-96 degrees C",
       ratio: "1:12 to 1:16",
-      time: "1:00–2:00 min",
-      tips: "Most versatile brewer available. Inverted method gives more control. Experiment freely — there is no wrong way to use an AeroPress."
+      time: "1:00-2:00 min",
+      tips: "Most versatile brewer available. Inverted method gives more control. Experiment freely  -  there is no wrong way to use an AeroPress."
     },
     {
       method: "Moka Pot",
@@ -169,49 +171,49 @@ app.get("/brewing-guides", (req, res) => {
       grind: "Fine (not espresso-fine)",
       temp: "Use pre-heated water",
       ratio: "Fill basket level, no tamping",
-      time: "4–5 min on low heat",
-      tips: "Use pre-boiled water to avoid a metallic taste. Remove from heat when you hear a hissing/sputtering sound. Not espresso — but close."
+      time: "4-5 min on low heat",
+      tips: "Use pre-boiled water to avoid a metallic taste. Remove from heat when you hear a hissing/sputtering sound. Not espresso  -  but close."
     },
     {
       method: "Espresso",
       roast: "Medium / Dark",
-      grind: "Very fine — adjusted per style and coffee",
-      temp: "198–200°F / 92.2–93.3°C",
+      grind: "Very fine  -  adjusted per style and coffee",
+      temp: "198-200 degrees F / 92.2-93.3 degrees C",
       ratio: "Normale: 1:2.5 (18g in, 45g out)",
-      time: "25–30 sec for normale. Varies by style.",
-      certification: "Baristas must be certified before dialing espresso. Espresso is the highest form of coffee brewing — everything is intense yet nuanced. Bad extractions are obvious. Great to excellent shots are the required norm. The occasional god shot is always welcome.",
+      time: "25-30 sec for normale. Varies by style.",
+      certification: "Baristas must be certified before dialing espresso. Espresso is the highest form of coffee brewing  -  everything is intense yet nuanced. Bad extractions are obvious. Great to excellent shots are the required norm. The occasional god shot is always welcome.",
       styles: [
         {
           name: "Ristretto",
-          ratio: "1:1 to 1:1.5 (18g in, 18–27g out)",
-          time: "18–22 sec",
+          ratio: "1:1 to 1:1.5 (18g in, 18-27g out)",
+          time: "18-22 sec",
           character: "Intense, syrupy, concentrated sweetness. Only the earliest and most soluble compounds extracted. No room for error."
         },
         {
           name: "Normale",
           ratio: "1:2.5 (18g in, 45g out)",
-          time: "25–30 sec",
+          time: "25-30 sec",
           character: "The Intelligentsia standard. High extraction pushing toward lungo territory. Balanced intensity with complexity. Sweet, full, and lingering."
         },
         {
           name: "Lungo",
-          ratio: "1:3 to 1:3.5 (18g in, 54–63g out)",
-          time: "35–45 sec",
+          ratio: "1:3 to 1:3.5 (18g in, 54-63g out)",
+          time: "35-45 sec",
           character: "Extended extraction. More bitter compounds present but balanced by high sweetness when dialed correctly. Not for every coffee."
         },
         {
           name: "Turbo Shot",
           ratio: "1:2.5 (same as normale)",
-          time: "22–24 sec",
-          grind: "Coarser than normale — faster flow rate",
-          character: "Same dose, coarser grind, faster shot time. Reduces bitterness and increases clarity. Some coffees taste significantly better as turbo shots — particularly naturals and high-clarity lots."
+          time: "22-24 sec",
+          grind: "Coarser than normale  -  faster flow rate",
+          character: "Same dose, coarser grind, faster shot time. Reduces bitterness and increases clarity. Some coffees taste significantly better as turbo shots  -  particularly naturals and high-clarity lots."
         }
       ],
-      tips: "Espresso is the highest form of coffee brewing — every variable is amplified. Dial in grind first, one click at a time. Always pull on a scale. Sour or fast = grind finer. Bitter or slow = grind coarser. Not every coffee suits every style — part of the craft is knowing which style serves the coffee best.",
+      tips: "Espresso is the highest form of coffee brewing  -  every variable is amplified. Dial in grind first, one click at a time. Always pull on a scale. Sour or fast = grind finer. Bitter or slow = grind coarser. Not every coffee suits every style  -  part of the craft is knowing which style serves the coffee best.",
       evaluation: {
-        philosophy: "Espresso evaluation is based entirely on quality in the cup. Shot time and yield are starting points — the cup tells you the truth. A balanced shot has sweetness that carries through to a long, lingering finish. That finish is your most important diagnostic tool.",
+        philosophy: "Espresso evaluation is based entirely on quality in the cup. Shot time and yield are starting points  -  the cup tells you the truth. A balanced shot has sweetness that carries through to a long, lingering finish. That finish is your most important diagnostic tool.",
         primary_indicators: [
-          { indicator: "Balanced", description: "Sweetness present from first sip through to a long lingering finish. Complexity without harshness. This is the target — great to excellent is the required norm." },
+          { indicator: "Balanced", description: "Sweetness present from first sip through to a long lingering finish. Complexity without harshness. This is the target  -  great to excellent is the required norm." },
           { indicator: "Sour finish", description: "Under-extracted. The shot may taste okay upfront but the finish turns sour or sharp rather than sweet. Grind finer, slow the shot down, or check your dose." },
           { indicator: "Bitter or dry finish", description: "Over-extracted. Harsh compounds dominating the back palate. Grind coarser, speed the shot up, or reduce yield." },
           { indicator: "Flat or hollow", description: "Low extraction overall. No sweetness, no complexity, no finish. Often a channeling issue or uneven distribution. Check your tamp and distribution before adjusting grind." },
@@ -219,17 +221,17 @@ app.get("/brewing-guides", (req, res) => {
         ],
         refractometer_protocol: {
           tool: "VST refractometer",
-          when_to_use: "When a barista is having difficulty dialing in and sensory evaluation alone is not resolving the issue. Even the most experienced baristas hit walls — the refractometer removes guesswork and shows exactly what is happening in the cup.",
-          target_extraction: "18–22% extraction yield. Target 20.5–21% for the Intelligentsia normale standard.",
-          target_tds: "8–12% TDS for espresso depending on style. Ristretto will be higher, lungo lower.",
+          when_to_use: "When a barista is having difficulty dialing in and sensory evaluation alone is not resolving the issue. Even the most experienced baristas hit walls  -  the refractometer removes guesswork and shows exactly what is happening in the cup.",
+          target_extraction: "18-22% extraction yield. Target 20.5-21% for the Intelligentsia normale standard.",
+          target_tds: "8-12% TDS for espresso depending on style. Ristretto will be higher, lungo lower.",
           process: [
-            "Pull the shot and let it cool slightly — hot samples give inaccurate readings",
+            "Pull the shot and let it cool slightly  -  hot samples give inaccurate readings",
             "Place a drop on the refractometer prism",
             "Read the Brix value and use the VST coffee app to calculate extraction yield",
             "Compare against your target range",
             "Adjust grind, dose, or yield based on the data combined with your sensory evaluation"
           ],
-          important_note: "The refractometer confirms what your palate is telling you — it does not replace sensory evaluation. Always taste first, measure second. If the cup tastes balanced and the numbers are slightly off, trust the cup."
+          important_note: "The refractometer confirms what your palate is telling you  -  it does not replace sensory evaluation. Always taste first, measure second. If the cup tastes balanced and the numbers are slightly off, trust the cup."
         }
       }
     },
@@ -239,15 +241,15 @@ app.get("/brewing-guides", (req, res) => {
       grind: "Extra coarse",
       temp: "Cold / room temp water",
       ratio: "1:8",
-      time: "12–18 hours",
-      tips: "Steep in fridge for 12–18 hours. Strain through a fine mesh or filter. Dilute 1:1 with water or milk to serve. Very low acidity."
+      time: "12-18 hours",
+      tips: "Steep in fridge for 12-18 hours. Strain through a fine mesh or filter. Dilute 1:1 with water or milk to serve. Very low acidity."
     }
   ]);
 });
 
-// ─────────────────────────────────────────
+//
 // CULTIVARS
-// ─────────────────────────────────────────
+//
 app.get("/cultivars", (req, res) => {
   const { species } = req.query;
 
@@ -255,7 +257,7 @@ app.get("/cultivars", (req, res) => {
     {
       name: "Gesha / Geisha",
       species: "arabica",
-      origin: "Ethiopia → Panama",
+      origin: "Ethiopia   Panama",
       process: ["washed", "natural"],
       flavor: ["Jasmine", "Peach", "Tea-like", "Floral"],
       body: "Light",
@@ -265,7 +267,7 @@ app.get("/cultivars", (req, res) => {
     {
       name: "Bourbon",
       species: "arabica",
-      origin: "Réunion Island",
+      origin: "Reunion Island",
       process: ["washed", "natural", "honey"],
       flavor: ["Caramel", "Red apple", "Brown sugar", "Milk chocolate"],
       body: "Medium",
@@ -285,12 +287,12 @@ app.get("/cultivars", (req, res) => {
     {
       name: "Catimor",
       species: "arabica",
-      origin: "Portugal (Timor Hybrid × Caturra)",
+      origin: "Portugal (Timor Hybrid   Caturra)",
       process: ["washed", "natural"],
       flavor: ["Earthy", "Nutty", "Herbal"],
       body: "Full",
       acidity: "Low",
-      description: "The most widely grown cultivar in the Philippines due to its disease resistance and productivity. Cup quality varies — exceptional terroir and processing can produce a clean, satisfying cup."
+      description: "The most widely grown cultivar in the Philippines due to its disease resistance and productivity. Cup quality varies  -  exceptional terroir and processing can produce a clean, satisfying cup."
     },
     {
       name: "SL28 / SL34",
@@ -305,193 +307,13 @@ app.get("/cultivars", (req, res) => {
     {
       name: "Catuai",
       species: "arabica",
-      origin: "Brazil (Mundo Novo × Caturra)",
+      origin: "Brazil (Mundo Novo   Caturra)",
       process: ["natural", "honey", "washed"],
       flavor: ["Chocolate", "Dried fruit", "Nutty", "Brown sugar"],
       body: "Medium-full",
       acidity: "Medium",
       description: "Very common in Brazil and Central America. Natural processing brings out its chocolate and dried fruit character beautifully."
     },
-    {
-  name: "Red Bourbon",
-  species: "arabica",
-  origin: "Réunion Island (natural mutation of Typica)",
-  process: ["washed", "natural", "honey"],
-  flavor: ["Chocolate", "Caramel", "Nutty", "Brown sugar"],
-  body: "Medium-full",
-  acidity: "Medium",
-  description: "A natural mutation of Typica and one of the oldest Arabica cultivars still widely grown. The foundation of the Bourbon family. Produces a classic, comforting cup — chocolate, caramel, and nutty sweetness with a clean finish. The benchmark against which other Bourbon mutations are measured."
-},
-{
-  name: "Yellow Bourbon",
-  species: "arabica",
-  origin: "Brazil (natural mutation of Red Bourbon)",
-  process: ["washed", "natural", "honey"],
-  flavor: ["Intense sweetness", "Bright citrus", "Stone fruit", "Tropical"],
-  body: "Medium",
-  acidity: "Medium-high",
-  description: "A natural mutation of Red Bourbon caused by a recessive gene that changes the cherry color from red to yellow at maturity. Matures faster than Red Bourbon but is more susceptible to disease. Higher fructose content produces an intensely sweet cup with bright citrus and stone fruit notes that distinguish it clearly from its Red Bourbon parent."
-},
-{
-  name: "Pink Bourbon",
-  species: "arabica",
-  origin: "Ethiopia (landrace — despite the name, not a Bourbon mutation)",
-  process: ["washed", "natural", "honey"],
-  flavor: ["Honeysuckle", "Pink lemonade", "Jasmine", "Floral"],
-  body: "Light-medium",
-  acidity: "High",
-  description: "Despite its name, Pink Bourbon is not a mutation of Red or Yellow Bourbon — it is an Ethiopian landrace variety. The pink cherry color led to the Bourbon association but genetically it is distinct. Rare and highly prized in specialty coffee for its intensely floral, perfumed character. Notes of honeysuckle, jasmine, and pink lemonade make it one of the most distinctive and sought-after coffees in the world."
-},
-{
-  name: "Pacamara",
-  species: "arabica",
-  origin: "El Salvador (Pacas × Maragogipe)",
-  process: ["washed", "natural", "honey"],
-  flavor: ["Stone fruit", "Floral", "Tropical", "Complex"],
-  body: "Full",
-  acidity: "High",
-  description: "A large-bean hybrid of Pacas and Maragogipe developed in El Salvador. Known for its impressive cup complexity — intensely floral and fruity with a heavy body. A consistent favorite in barista competitions worldwide."
-},
-{
-  name: "Pacas",
-  species: "arabica",
-  origin: "El Salvador (natural mutation of Bourbon)",
-  process: ["washed", "natural"],
-  flavor: ["Caramel", "Citrus", "Milk chocolate", "Clean"],
-  body: "Medium",
-  acidity: "Medium-high",
-  description: "A natural mutation of Bourbon discovered in El Salvador in 1949 on the Pacas family farm. Compact plant, high productivity, and a clean sweet cup. One of the parents of the celebrated Pacamara hybrid."
-},
-{
-  name: "Tabi",
-  species: "arabica",
-  origin: "Colombia (Typica × Bourbon × Timor Hybrid)",
-  process: ["washed", "natural"],
-  flavor: ["Floral", "Fruity", "Sweet", "Balanced"],
-  body: "Medium",
-  acidity: "Medium-high",
-  description: "Developed by Cenicafe in Colombia. Tabi means 'good' in the Guambiano indigenous language. Combines the exceptional cup quality of Typica and Bourbon with disease resistance. Produces an elegant, sweet, and complex cup increasingly found in Colombian specialty lots."
-},
-{
-  name: "Starmaya",
-  species: "arabica",
-  origin: "Mesoamerica (F1 hybrid — Ethiopia landrace × Timor Hybrid)",
-  process: ["washed", "natural"],
-  flavor: ["Floral", "Fruit-forward", "Bright", "Complex"],
-  body: "Medium",
-  acidity: "High",
-  description: "One of the first F1 hybrid varieties produced using hybrid seed technology, making it reproducible from seed unlike most F1 hybrids. Exceptional cup quality combined with disease resistance and climate adaptability. Represents the next generation of specialty coffee breeding — high performance without sacrificing flavor."
-},
-{
-  name: "Centroamericano",
-  species: "arabica",
-  origin: "Mesoamerica (F1 hybrid — Ethiopia landrace × Timor Hybrid)",
-  process: ["washed", "natural"],
-  flavor: ["Tropical fruit", "Floral", "Citrus", "Complex"],
-  body: "Medium-full",
-  acidity: "High",
-  description: "An F1 hybrid developed by CATIE and Ecom. One of the most celebrated F1 hybrids in specialty coffee — combining extraordinary cup quality with high yield and disease resistance. Frequently appears in Cup of Excellence competition lots from Central America."
-},
-{
-  name: "Mundo Novo",
-  species: "arabica",
-  origin: "Brazil (Typica × Bourbon natural hybrid)",
-  process: ["natural", "washed"],
-  flavor: ["Chocolate", "Nutty", "Caramel", "Full body"],
-  body: "Full",
-  acidity: "Low-medium",
-  description: "A natural hybrid of Typica and Bourbon discovered in Brazil in the 1940s. Highly productive, disease resistant, and well adapted to Brazilian growing conditions. Produces a classic full-bodied Brazilian cup — chocolate, nuts, and caramel. One of the most widely planted varieties in Brazil and a parent of several important cultivars."
-},
-{
-  name: "Mundo Maya",
-  species: "arabica",
-  origin: "Guatemala (Mundo Novo × Caturra)",
-  process: ["washed", "natural"],
-  flavor: ["Chocolate", "Caramel", "Citrus", "Balanced"],
-  body: "Medium-full",
-  acidity: "Medium",
-  description: "Developed in Guatemala as an adaptation of the Catuai lineage for Central American conditions. Combines the productivity and body of Mundo Novo with the compact size of Caturra. Produces a well-balanced, chocolatey cup suited to Guatemala's diverse growing regions."
-},
-{
-  name: "Milenio",
-  species: "arabica",
-  origin: "Colombia (Cenicafe hybrid)",
-  process: ["washed"],
-  flavor: ["Clean", "Sweet", "Balanced", "Mild citrus"],
-  body: "Medium",
-  acidity: "Medium",
-  description: "A Cenicafe variety developed for resistance to Colombia Rust (la roya) and CBD disease. Part of Colombia's ongoing effort to maintain specialty cup quality while protecting farmers from devastating crop losses. Produces a clean, balanced cup well suited to Colombia's washed processing tradition."
-},
-{
-  name: "Ruiru 11",
-  species: "arabica",
-  origin: "Kenya (complex multi-parent hybrid)",
-  process: ["washed"],
-  flavor: ["Blackcurrant", "Berry", "Bright acidity", "Bold"],
-  body: "Medium-full",
-  acidity: "High",
-  description: "Developed by the Coffee Research Station in Ruiru, Kenya specifically for resistance to Coffee Berry Disease (CBD) and leaf rust. A complex hybrid incorporating SL28, SL34, N39, K7, and Timor Hybrid genetics. Controversial in specialty circles because it produces smaller trees and slightly different cup characteristics than SL28/34 — but when grown well it retains Kenya's signature bright, berry-forward cup profile."
-},
-{
-  name: "Wolisho",
-  species: "arabica",
-  origin: "Ethiopia (JARC landrace — Jimma zone)",
-  process: ["washed", "natural"],
-  flavor: ["Floral", "Jasmine", "Citrus", "Tea-like"],
-  body: "Light-medium",
-  acidity: "High",
-  description: "One of the Ethiopian landrace varieties released by the Jimma Agricultural Research Centre (JARC). Tall plant with large leaves. Produces a delicate, floral, tea-like cup with jasmine and citrus character. Found predominantly in the Jimma zone of Ethiopia."
-},
-{
-  name: "Kurume",
-  species: "arabica",
-  origin: "Ethiopia (JARC landrace)",
-  process: ["washed", "natural"],
-  flavor: ["Berry", "Floral", "Sweet", "Bright"],
-  body: "Light",
-  acidity: "High",
-  description: "A dwarf JARC variety known for its small bean size and intensely bright, berry-forward cup. Highly productive and disease resistant. Increasingly appearing in specialty Ethiopian lots as roasters seek more traceable single-variety offerings."
-},
-{
-  name: "Dega",
-  species: "arabica",
-  origin: "Ethiopia (JARC highland landrace)",
-  process: ["washed", "natural"],
-  flavor: ["Stone fruit", "Floral", "Sweet", "Complex"],
-  body: "Medium",
-  acidity: "Medium-high",
-  description: "A JARC selection adapted to high altitude growing conditions — Dega means 'highland' in Amharic. Produces a well-balanced, sweet, and complex cup with excellent clarity. Well suited to washed processing and increasingly sought after by specialty roasters sourcing traceable Ethiopian lots."
-},
-{
-  name: "Wush Wush",
-  species: "arabica",
-  origin: "Ethiopia (Kaffa region landrace)",
-  process: ["washed", "natural"],
-  flavor: ["Bergamot", "Earl Grey", "Floral", "Tropical fruit"],
-  body: "Light",
-  acidity: "High",
-  description: "Named after the Wush Wush area in the Kaffa region of Ethiopia. One of the most distinctive Ethiopian landraces — famous for its bergamot and Earl Grey tea character that makes it unlike almost any other coffee in the world. Extremely rare and highly sought after by specialty roasters. When you taste it, you understand why Ethiopia is considered the birthplace of coffee."
-},
-{
-  name: "74110 / 74112 (JARC selections)",
-  species: "arabica",
-  origin: "Ethiopia (Jimma Agricultural Research Centre)",
-  process: ["washed", "natural"],
-  flavor: ["Floral", "Fruity", "Bright", "Classic Ethiopian"],
-  body: "Light-medium",
-  acidity: "High",
-  description: "Among the most widely planted JARC selections in Ethiopia, released in the 1970s as disease-resistant high-yield varieties. When grown at high altitude and processed with care they produce exceptional specialty cups with classic Ethiopian floral and fruit character. The backbone of much of Ethiopia's specialty coffee export."
-},
-{
-  name: "Coffea Eugenioides",
-  species: "eugenioides",
-  origin: "East Africa (Kenya, Uganda, Rwanda highlands)",
-  process: ["washed", "natural"],
-  flavor: ["Toasted marshmallow", "Cereal milk", "Lemon drops", "Papaya", "Sesame snaps"],
-  body: "Extremely light and silky",
-  acidity: "Low — candy-like sweetness dominates",
-  description: "Widely considered the most unique species in specialty coffee today. Often called 'Arabica's mother' — Eugenioides is one of the two parent species (alongside Robusta) that naturally hybridized roughly 600,000 years ago to create the Arabica we drink today. Indigenous to the highlands of East Africa, it was virtually abandoned as a commercial crop until recently rediscovered by the specialty world. The flavor profile is unlike any other coffee — many experts say it tastes more like a dessert than traditional coffee. Toasted marshmallows, cereal milk, sesame snaps, lemon drops, and papaya with an extremely silky, tea-like texture and high candy-like sweetness. A truly once-in-a-lifetime cup experience."
-}
     {
       name: "Fine Robusta",
       species: "robusta",
@@ -520,7 +342,188 @@ app.get("/cultivars", (req, res) => {
       flavor: ["Tart", "Fruity", "Wine-like", "Dark fruit"],
       body: "Medium-full",
       acidity: "Medium-high",
-      description: "Coffea liberica var. dewevrei — often mislabeled as Barako but a distinct variety with a completely different flavor profile. Tart and fruity where true Barako is bold and smoky. Deserves to be understood on its own terms."
+      description: "Coffea liberica var. dewevrei  -  often mislabeled as Barako but a distinct variety with a completely different flavor profile. Tart and fruity where true Barako is bold and smoky. Deserves to be understood on its own terms."
+    }
+
+    {
+      name: "Red Bourbon",
+      species: "arabica",
+      origin: "Reunion Island (natural mutation of Typica)",
+      process: ["washed", "natural", "honey"],
+      flavor: ["Chocolate", "Caramel", "Nutty", "Brown sugar"],
+      body: "Medium-full",
+      acidity: "Medium",
+      description: "A natural mutation of Typica and one of the oldest Arabica cultivars still widely grown. The foundation of the Bourbon family. Produces a classic cup - chocolate, caramel, and nutty sweetness with a clean finish. The benchmark against which other Bourbon mutations are measured."
+    },
+    {
+      name: "Yellow Bourbon",
+      species: "arabica",
+      origin: "Brazil (natural mutation of Red Bourbon caused by recessive gene)",
+      process: ["washed", "natural", "honey"],
+      flavor: ["Intense sweetness", "Bright citrus", "Stone fruit", "Tropical"],
+      body: "Medium",
+      acidity: "Medium-high",
+      description: "A natural mutation of Red Bourbon caused by a recessive gene that changes cherry color from red to yellow at maturity. Matures faster but is more susceptible to disease. Higher fructose content produces an intensely sweet cup with bright citrus and stone fruit notes that clearly distinguish it from its Red Bourbon parent."
+    },
+    {
+      name: "Pink Bourbon",
+      species: "arabica",
+      origin: "Ethiopia (landrace - not a Bourbon mutation despite the name)",
+      process: ["washed", "natural", "honey"],
+      flavor: ["Honeysuckle", "Pink lemonade", "Jasmine", "Floral"],
+      body: "Light-medium",
+      acidity: "High",
+      description: "Despite its name, Pink Bourbon is not a mutation of Red or Yellow Bourbon. It is an Ethiopian landrace variety - the pink cherry color led to the Bourbon association but genetically it is distinct. Rare and highly prized for its intensely floral, perfumed character. Notes of honeysuckle, jasmine, and pink lemonade make it one of the most distinctive and sought-after coffees in the world."
+    },
+    {
+      name: "Pacamara",
+      species: "arabica",
+      origin: "El Salvador (Pacas x Maragogipe)",
+      process: ["washed", "natural", "honey"],
+      flavor: ["Stone fruit", "Floral", "Tropical", "Complex"],
+      body: "Full",
+      acidity: "High",
+      description: "A large-bean hybrid of Pacas and Maragogipe developed in El Salvador. Known for impressive cup complexity - intensely floral and fruity with a heavy body. A consistent favorite in barista competitions worldwide."
+    },
+    {
+      name: "Pacas",
+      species: "arabica",
+      origin: "El Salvador (natural mutation of Bourbon)",
+      process: ["washed", "natural"],
+      flavor: ["Caramel", "Citrus", "Milk chocolate", "Clean"],
+      body: "Medium",
+      acidity: "Medium-high",
+      description: "A natural mutation of Bourbon discovered in El Salvador in 1949 on the Pacas family farm. Compact plant, high productivity, and a clean sweet cup. One of the parents of the celebrated Pacamara hybrid."
+    },
+    {
+      name: "Tabi",
+      species: "arabica",
+      origin: "Colombia (Typica x Bourbon x Timor Hybrid)",
+      process: ["washed", "natural"],
+      flavor: ["Floral", "Fruity", "Sweet", "Balanced"],
+      body: "Medium",
+      acidity: "Medium-high",
+      description: "Developed by Cenicafe in Colombia. Tabi means 'good' in the Guambiano indigenous language. Combines the exceptional cup quality of Typica and Bourbon with disease resistance. Increasingly found in Colombian specialty lots."
+    },
+    {
+      name: "Starmaya",
+      species: "arabica",
+      origin: "Mesoamerica (F1 hybrid - Ethiopia landrace x Timor Hybrid)",
+      process: ["washed", "natural"],
+      flavor: ["Floral", "Fruit-forward", "Bright", "Complex"],
+      body: "Medium",
+      acidity: "High",
+      description: "One of the first F1 hybrid varieties producible from seed - making it reproducible unlike most F1 hybrids. Exceptional cup quality combined with disease resistance and climate adaptability. Represents the next generation of specialty coffee breeding."
+    },
+    {
+      name: "Centroamericano",
+      species: "arabica",
+      origin: "Mesoamerica (F1 hybrid - Ethiopia landrace x Timor Hybrid)",
+      process: ["washed", "natural"],
+      flavor: ["Tropical fruit", "Floral", "Citrus", "Complex"],
+      body: "Medium-full",
+      acidity: "High",
+      description: "An F1 hybrid developed by CATIE and Ecom. One of the most celebrated F1 hybrids in specialty coffee - combining extraordinary cup quality with high yield and disease resistance. Frequently appears in Cup of Excellence competition lots from Central America."
+    },
+    {
+      name: "Mundo Novo",
+      species: "arabica",
+      origin: "Brazil (Typica x Bourbon natural hybrid)",
+      process: ["natural", "washed"],
+      flavor: ["Chocolate", "Nutty", "Caramel", "Full body"],
+      body: "Full",
+      acidity: "Low-medium",
+      description: "A natural hybrid of Typica and Bourbon discovered in Brazil in the 1940s. Highly productive, disease resistant, and well adapted to Brazilian conditions. Produces a classic full-bodied Brazilian cup - chocolate, nuts, and caramel. A parent of several important cultivars including Catuai."
+    },
+    {
+      name: "Mundo Maya",
+      species: "arabica",
+      origin: "Guatemala (Mundo Novo x Caturra)",
+      process: ["washed", "natural"],
+      flavor: ["Chocolate", "Caramel", "Citrus", "Balanced"],
+      body: "Medium-full",
+      acidity: "Medium",
+      description: "Developed in Guatemala combining the productivity and body of Mundo Novo with the compact size of Caturra. Produces a well-balanced, chocolatey cup suited to Guatemala's diverse growing regions."
+    },
+    {
+      name: "Milenio",
+      species: "arabica",
+      origin: "Colombia (Cenicafe hybrid)",
+      process: ["washed"],
+      flavor: ["Clean", "Sweet", "Balanced", "Mild citrus"],
+      body: "Medium",
+      acidity: "Medium",
+      description: "A Cenicafe variety developed for resistance to Colombia Rust and CBD disease. Part of Colombia's ongoing effort to maintain specialty cup quality while protecting farmers from devastating crop losses. Produces a clean, balanced cup well suited to Colombia's washed processing tradition."
+    },
+    {
+      name: "Ruiru 11",
+      species: "arabica",
+      origin: "Kenya (complex multi-parent hybrid)",
+      process: ["washed"],
+      flavor: ["Blackcurrant", "Berry", "Bright acidity", "Bold"],
+      body: "Medium-full",
+      acidity: "High",
+      description: "Developed by the Coffee Research Station in Ruiru, Kenya for resistance to Coffee Berry Disease and leaf rust. A complex hybrid incorporating SL28, SL34, N39, K7, and Timor Hybrid genetics. When grown well it retains Kenya's signature bright, berry-forward cup profile."
+    },
+    {
+      name: "Wolisho",
+      species: "arabica",
+      origin: "Ethiopia (JARC landrace - Jimma zone)",
+      process: ["washed", "natural"],
+      flavor: ["Floral", "Jasmine", "Citrus", "Tea-like"],
+      body: "Light-medium",
+      acidity: "High",
+      description: "One of the Ethiopian landrace varieties released by the Jimma Agricultural Research Centre (JARC). Tall plant with large leaves. Produces a delicate, floral, tea-like cup with jasmine and citrus character. Found predominantly in the Jimma zone of Ethiopia."
+    },
+    {
+      name: "Kurume",
+      species: "arabica",
+      origin: "Ethiopia (JARC landrace)",
+      process: ["washed", "natural"],
+      flavor: ["Berry", "Floral", "Sweet", "Bright"],
+      body: "Light",
+      acidity: "High",
+      description: "A dwarf JARC variety known for its small bean size and intensely bright, berry-forward cup. Highly productive and disease resistant. Increasingly appearing in specialty Ethiopian lots as roasters seek more traceable single-variety offerings."
+    },
+    {
+      name: "Dega",
+      species: "arabica",
+      origin: "Ethiopia (JARC highland landrace)",
+      process: ["washed", "natural"],
+      flavor: ["Stone fruit", "Floral", "Sweet", "Complex"],
+      body: "Medium",
+      acidity: "Medium-high",
+      description: "A JARC selection adapted to high altitude - Dega means 'highland' in Amharic. Produces a well-balanced, sweet, and complex cup with excellent clarity. Well suited to washed processing and increasingly sought after by specialty roasters sourcing traceable Ethiopian lots."
+    },
+    {
+      name: "Wush Wush",
+      species: "arabica",
+      origin: "Ethiopia (Kaffa region landrace)",
+      process: ["washed", "natural"],
+      flavor: ["Bergamot", "Earl Grey", "Floral", "Tropical fruit"],
+      body: "Light",
+      acidity: "High",
+      description: "Named after the Wush Wush area in the Kaffa region of Ethiopia. Famous for its bergamot and Earl Grey tea character that makes it unlike almost any other coffee in the world. Extremely rare and highly sought after by specialty roasters worldwide."
+    },
+    {
+      name: "74110 / 74112 (JARC)",
+      species: "arabica",
+      origin: "Ethiopia (Jimma Agricultural Research Centre)",
+      process: ["washed", "natural"],
+      flavor: ["Floral", "Fruity", "Bright", "Classic Ethiopian"],
+      body: "Light-medium",
+      acidity: "High",
+      description: "Among the most widely planted JARC selections in Ethiopia, released in the 1970s as disease-resistant high-yield varieties. When grown at high altitude and processed with care they produce exceptional specialty cups with classic Ethiopian floral and fruit character."
+    },
+    {
+      name: "Coffea Eugenioides",
+      species: "eugenioides",
+      origin: "East Africa (Kenya, Uganda, Rwanda highlands)",
+      process: ["washed", "natural"],
+      flavor: ["Toasted marshmallow", "Cereal milk", "Lemon drops", "Papaya", "Sesame snaps"],
+      body: "Extremely light and silky",
+      acidity: "Low - candy-like sweetness dominates",
+      description: "Widely considered the most unique species in specialty coffee today. Often called Arabica's mother - Eugenioides is one of the two parent species (alongside Robusta) that naturally hybridized roughly 600,000 years ago to create Arabica. Indigenous to the highlands of East Africa, it was virtually abandoned as a commercial crop until recently rediscovered by the specialty world. The flavor profile is unlike any other coffee - toasted marshmallows, cereal milk, sesame snaps, lemon drops, and papaya with an extremely silky tea-like texture and high candy-like sweetness. A truly once-in-a-lifetime cup experience."
     }
   ];
 
@@ -538,9 +541,9 @@ app.get("/cultivars", (req, res) => {
   res.json(cultivars);
 });
 
-// ─────────────────────────────────────────
+//
 // PROCESSING METHODS
-// ─────────────────────────────────────────
+//
 app.get("/processing", (req, res) => {
   const { category } = req.query;
 
@@ -557,7 +560,7 @@ app.get("/processing", (req, res) => {
       category: "traditional",
       flavor: ["Fruity", "Winey", "Heavy body", "Fermented sweetness"],
       body: "Full",
-      description: "Whole cherry dried intact on raised beds for weeks. Fruit sugars ferment into the bean producing intense fruit and wine-like sweetness. The original process — how coffee was dried in Ethiopia for centuries."
+      description: "Whole cherry dried intact on raised beds for weeks. Fruit sugars ferment into the bean producing intense fruit and wine-like sweetness. The original process  -  how coffee was dried in Ethiopia for centuries."
     },
     {
       name: "Honey Process",
@@ -578,21 +581,21 @@ app.get("/processing", (req, res) => {
       category: "developed",
       flavor: ["Crisp", "Blackcurrant", "Very bright", "Tomato"],
       body: "Medium",
-      description: "After standard washed fermentation, beans are soaked again in fresh clean water for 12–72 hours. Unique to Kenyan processing — removes even more mucilage, creating exceptional clarity and intensifying acidity."
+      description: "After standard washed fermentation, beans are soaked again in fresh clean water for 12-72 hours. Unique to Kenyan processing  -  removes even more mucilage, creating exceptional clarity and intensifying acidity."
     },
     {
       name: "Extended Fermentation",
       category: "developed",
       flavor: ["Complex", "Deep sweetness", "Developed fruit"],
       body: "Medium to full",
-      description: "Standard washed or natural but fermentation time deliberately lengthened — sometimes 48–96 hours. Controlled correctly it develops deeper complexity. Poorly controlled it produces over-fermented, vinegary defects."
+      description: "Standard washed or natural but fermentation time deliberately lengthened  -  sometimes 48-96 hours. Controlled correctly it develops deeper complexity. Poorly controlled it produces over-fermented, vinegary defects."
     },
     {
       name: "Anaerobic Fermentation",
       category: "modern",
       flavor: ["Tropical fruit", "Lactic sweetness", "Funky", "Intense"],
       body: "Full",
-      description: "Cherries sealed in airtight tanks with CO₂ allowed to escape via valve. Absence of oxygen shifts fermentation microbiology producing intense tropical fruit and lactic sweetness not achievable aerobically."
+      description: "Cherries sealed in airtight tanks with CO  allowed to escape via valve. Absence of oxygen shifts fermentation microbiology producing intense tropical fruit and lactic sweetness not achievable aerobically."
     },
     {
       name: "Lactic Fermentation",
@@ -606,21 +609,21 @@ app.get("/processing", (req, res) => {
       category: "experimental",
       flavor: ["Juicy", "Clean fruit", "Low bitterness", "Bright"],
       body: "Medium",
-      description: "Borrowed from Beaujolais wine. Whole intact cherries sealed in CO₂-saturated tanks — fermentation begins intracellularly inside the cherry itself. Produces remarkably clean, intense, juicy fruit. Pioneered by 2015 World Barista Champion Sasa Sestic."
+      description: "Borrowed from Beaujolais wine. Whole intact cherries sealed in CO -saturated tanks  -  fermentation begins intracellularly inside the cherry itself. Produces remarkably clean, intense, juicy fruit. Pioneered by 2015 World Barista Champion Sasa Sestic."
     },
     {
       name: "Yeast Inoculation",
       category: "experimental",
       flavor: ["Controlled", "Consistent", "Precise fruit"],
       body: "Variable",
-      description: "Specific commercial or cultured yeast strains introduced into fermentation to steer flavor development. Produces highly consistent and intentional profiles. Controversial — moves away from terroir-driven fermentation toward recipe-driven processing."
+      description: "Specific commercial or cultured yeast strains introduced into fermentation to steer flavor development. Produces highly consistent and intentional profiles. Controversial  -  moves away from terroir-driven fermentation toward recipe-driven processing."
     },
     {
       name: "Co-Fermentation",
       category: "experimental",
       flavor: ["Infused", "Unique", "Variable"],
       body: "Variable",
-      description: "Coffee fermented alongside other ingredients — fruit pulp, juice, cinnamon, even alcohol. Bean absorbs aromatic compounds during fermentation. Results range from extraordinary to gimmicky depending on execution."
+      description: "Coffee fermented alongside other ingredients  -  fruit pulp, juice, cinnamon, even alcohol. Bean absorbs aromatic compounds during fermentation. Results range from extraordinary to gimmicky depending on execution."
     },
     {
       name: "Barrel Aged",
@@ -645,14 +648,14 @@ app.get("/processing", (req, res) => {
   res.json(methods);
 });
 
-// ─────────────────────────────────────────
+//
 // PHILIPPINE ORIGINS
-// ─────────────────────────────────────────
+//
 app.get("/origins/philippines", (req, res) => {
   res.json([
     {
       region: "Benguet, Cordillera",
-      altitude: "1,200–1,800 masl",
+      altitude: "1,200-1,800 masl",
       species: ["Arabica"],
       process: ["Washed", "Natural"],
       flavor: ["Citrus", "Floral", "Bright acidity", "Clean"],
@@ -668,7 +671,7 @@ app.get("/origins/philippines", (req, res) => {
     },
     {
       region: "Mt. Apo, Davao",
-      altitude: "900–1,500 masl",
+      altitude: "900-1,500 masl",
       species: ["Arabica"],
       process: ["Washed", "Honey"],
       flavor: ["Balanced", "Nutty", "Milk chocolate", "Mild body"],
@@ -676,7 +679,7 @@ app.get("/origins/philippines", (req, res) => {
     },
     {
       region: "Sultan Kudarat",
-      altitude: "600–1,200 masl",
+      altitude: "600-1,200 masl",
       species: ["Arabica", "Robusta"],
       process: ["Washed", "Natural"],
       flavor: ["Full body", "Earthy", "Dark chocolate", "Herbal"],
@@ -684,7 +687,7 @@ app.get("/origins/philippines", (req, res) => {
     },
     {
       region: "Bukidnon",
-      altitude: "600–1,400 masl",
+      altitude: "600-1,400 masl",
       species: ["Arabica", "Robusta"],
       process: ["Washed", "Natural"],
       flavor: ["Clean", "Balanced", "Nutty", "Mild acidity"],
@@ -696,7 +699,7 @@ app.get("/origins/philippines", (req, res) => {
       species: ["Liberica (True Barako)"],
       process: ["Natural"],
       flavor: ["Woody", "Smoky", "Bold", "Floral nose"],
-      description: "The home of authentic Kapeng Barako. Coffea liberica grown here is the real thing — bold, woody, smoky with that signature floral aroma. Very few farms still growing true Liberica. Support these producers directly."
+      description: "The home of authentic Kapeng Barako. Coffea liberica grown here is the real thing  -  bold, woody, smoky with that signature floral aroma. Very few farms still growing true Liberica. Support these producers directly."
     },
     {
       region: "Cavite",
@@ -709,9 +712,9 @@ app.get("/origins/philippines", (req, res) => {
   ]);
 });
 
-// ─────────────────────────────────────────
+//
 // EQUIPMENT GUIDE
-// ─────────────────────────────────────────
+//
 app.get("/equipment", (req, res) => {
   const { tier } = req.query;
 
@@ -720,15 +723,15 @@ app.get("/equipment", (req, res) => {
       category: "Grinder",
       tier: "entry",
       item: "Timemore C2 / Hario Skerton",
-      price_php: "₱2,500–₱3,500",
-      description: "The single most impactful upgrade any home brewer can make. A consistent burr grinder produces even particle sizes — the foundation of good extraction.",
-      why_it_matters: "Blade grinders produce uneven particles that extract at different rates — the biggest cause of bitter and sour coffee."
+      price_php: " 2,500- 3,500",
+      description: "The single most impactful upgrade any home brewer can make. A consistent burr grinder produces even particle sizes  -  the foundation of good extraction.",
+      why_it_matters: "Blade grinders produce uneven particles that extract at different rates  -  the biggest cause of bitter and sour coffee."
     },
     {
       category: "Grinder",
       tier: "mid",
       item: "Timemore Slim Plus / 1Zpresso Q2",
-      price_php: "₱5,000–₱9,000",
+      price_php: " 5,000- 9,000",
       description: "Significant step up in grind consistency and build quality. Suitable for pour over and espresso.",
       why_it_matters: "At this tier you will taste the difference clearly in your cup."
     },
@@ -736,7 +739,7 @@ app.get("/equipment", (req, res) => {
       category: "Brewer",
       tier: "entry",
       item: "Hario V60 / Cafec Flower Dripper",
-      price_php: "₱800–₱1,500",
+      price_php: " 800- 1,500",
       description: "The entry point to specialty pour over. Simple, effective, produces a clean and bright cup.",
       why_it_matters: "Teaches you the fundamentals of pour control and extraction."
     },
@@ -744,7 +747,7 @@ app.get("/equipment", (req, res) => {
       category: "Brewer",
       tier: "entry",
       item: "AeroPress",
-      price_php: "₱2,500–₱3,500",
+      price_php: " 2,500- 3,500",
       description: "The most versatile brewer available. Forgiving, portable, and produces excellent coffee across a wide range of styles.",
       why_it_matters: "Perfect for beginners who want to experiment without committing to one brew method."
     },
@@ -752,15 +755,15 @@ app.get("/equipment", (req, res) => {
       category: "Kettle",
       tier: "entry",
       item: "Gooseneck Kettle (basic)",
-      price_php: "₱1,200–₱2,000",
-      description: "A gooseneck spout gives you control over your pour rate and direction — essential for pour over methods.",
+      price_php: " 1,200- 2,000",
+      description: "A gooseneck spout gives you control over your pour rate and direction  -  essential for pour over methods.",
       why_it_matters: "Pouring from a standard kettle onto a V60 makes consistent extraction nearly impossible."
     },
     {
       category: "Kettle",
       tier: "mid",
       item: "Fellow Stagg EKG / Timemore Fish",
-      price_php: "₱6,000–₱12,000",
+      price_php: " 6,000- 12,000",
       description: "Electric gooseneck with precise temperature control. Set your temperature and hold it throughout the brew.",
       why_it_matters: "Temperature stability is one of the most overlooked variables in home brewing."
     },
@@ -768,7 +771,7 @@ app.get("/equipment", (req, res) => {
       category: "Scale",
       tier: "entry",
       item: "Any kitchen scale (0.1g precision)",
-      price_php: "₱500–₱1,000",
+      price_php: " 500- 1,000",
       description: "Weighing your coffee and water is the fastest way to brew consistently. Eyeballing scoops produces different results every time.",
       why_it_matters: "Consistency is the foundation of improvement. You cannot dial in a recipe you cannot measure."
     },
@@ -776,7 +779,7 @@ app.get("/equipment", (req, res) => {
       category: "Scale",
       tier: "mid",
       item: "Acaia Pearl / Timemore Black Mirror",
-      price_php: "₱5,000–₱12,000",
+      price_php: " 5,000- 12,000",
       description: "Brewing scales with built-in timers and flow rate measurement. Used by professionals worldwide.",
       why_it_matters: "Flow rate feedback helps you pour more consistently, especially on V60 and Chemex."
     }
@@ -796,13 +799,13 @@ app.get("/equipment", (req, res) => {
   res.json(gear);
 });
 
-// ─────────────────────────────────────────
+//
 // ROASTER DIRECTORY
-// ─────────────────────────────────────────
+//
 app.get("/roasters", (req, res) => {
   res.json([
     {
-      name: "Sample Roaster — Add Your Own",
+      name: "Sample Roaster  -  Add Your Own",
       location: "Metro Manila",
       specialty: ["Philippine single origins", "Light roast"],
       species: ["Arabica"],
@@ -811,9 +814,9 @@ app.get("/roasters", (req, res) => {
   ]);
 });
 
-// ─────────────────────────────────────────
+//
 // SENSORY TRAINING
-// ─────────────────────────────────────────
+//
 app.get("/sensory", (req, res) => {
   res.json({
     introduction: "Sensory training is the practice of intentionally developing your ability to identify and describe what you taste. Like any skill, it improves with deliberate practice.",
@@ -821,7 +824,7 @@ app.get("/sensory", (req, res) => {
       {
         name: "Side-by-side comparison",
         difficulty: "Beginner",
-        description: "Brew the same coffee twice — once with your usual method, once with a slight grind adjustment. Focus on identifying what changed.",
+        description: "Brew the same coffee twice  -  once with your usual method, once with a slight grind adjustment. Focus on identifying what changed.",
         what_to_look_for: ["Sweetness", "Acidity", "Body", "Finish length"]
       },
       {
@@ -839,7 +842,7 @@ app.get("/sensory", (req, res) => {
       {
         name: "Cooling observation",
         difficulty: "Beginner",
-        description: "Taste the same cup at 70°C, 55°C, and 40°C. Notice how the flavor profile changes as it cools.",
+        description: "Taste the same cup at 70 degrees C, 55 degrees C, and 40 degrees C. Notice how the flavor profile changes as it cools.",
         what_to_look_for: ["Flavors that emerge as it cools", "Acidity changes", "Sweetness perception"]
       }
     ],
@@ -850,14 +853,14 @@ app.get("/sensory", (req, res) => {
       "Nutty (almond, hazelnut, peanut)",
       "Spicy (pepper, cinnamon, clove)",
       "Savory (tobacco, cedar, leather)",
-      "Fermented (winey, funky, vinegar — can be positive or defect)"
+      "Fermented (winey, funky, vinegar  -  can be positive or defect)"
     ]
   });
 });
 
-// ─────────────────────────────────────────
+//
 // CONTACT + CONSULTING
-// ─────────────────────────────────────────
+//
 app.get("/contact", (req, res) => {
   res.json({
     name: "Vlad",
@@ -872,8 +875,8 @@ app.get("/contact", (req, res) => {
       },
       {
         name: "Group sensory workshop",
-        description: "Guided cupping and flavor training for groups of 4–10 people.",
-        duration: "2–3 hours",
+        description: "Guided cupping and flavor training for groups of 4-10 people.",
+        duration: "2-3 hours",
         format: "In-person"
       },
       {
@@ -885,26 +888,26 @@ app.get("/contact", (req, res) => {
   });
 });
 
-// ─────────────────────────────────────────
-// ROOT — API OVERVIEW
-// ─────────────────────────────────────────
+//
+// ROOT  -  API OVERVIEW
+//
 app.get("/", (req, res) => {
   res.json({
     app: "Bored Barista API",
     version: "1.0",
     routes: [
-      "GET /flavor?taste=sour            — Flavor troubleshooter",
-      "GET /brewing-guides               — All brew method guides",
-      "GET /cultivars                    — All cultivars",
-      "GET /cultivars?species=arabica    — Filter by species (arabica / robusta / liberica)",
-      "GET /processing                   — All processing methods",
-      "GET /processing?category=modern  — Filter by category",
-      "GET /origins/philippines          — Philippine regional origins",
-      "GET /equipment                    — Full gear guide",
-      "GET /equipment?tier=entry         — Filter by tier (entry / mid)",
-      "GET /roasters                     — Roaster directory",
-      "GET /sensory                      — Sensory training exercises",
-      "GET /contact                      — Contact and consulting services"
+      "GET /flavor?taste=sour             -  Flavor troubleshooter",
+      "GET /brewing-guides                -  All brew method guides",
+      "GET /cultivars                     -  All cultivars",
+      "GET /cultivars?species=arabica     -  Filter by species (arabica / robusta / liberica)",
+      "GET /processing                    -  All processing methods",
+      "GET /processing?category=modern   -  Filter by category",
+      "GET /origins/philippines           -  Philippine regional origins",
+      "GET /equipment                     -  Full gear guide",
+      "GET /equipment?tier=entry          -  Filter by tier (entry / mid)",
+      "GET /roasters                      -  Roaster directory",
+      "GET /sensory                       -  Sensory training exercises",
+      "GET /contact                       -  Contact and consulting services"
     ]
   });
 });
